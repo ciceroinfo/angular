@@ -1,0 +1,39 @@
+<div style="text-align:center">
+  <h2>
+    {{name}} Welcome to All That Weather!
+  </h2>
+
+  <button (click)="signOut()">Sign Out</button>
+
+  <app-city-search></app-city-search>
+
+  <div *ngIf="xxx">
+    <div *ngFor="let i of xxx">
+
+      <mat-card class="example-card">
+
+        <div *ngFor="let w of i.weather">
+          <mat-card-header>
+            <img mat-card-avatar class="example-header-image" src="http://openweathermap.org/img/w/{{w.icon}}.png" alt="{{w.description}}">
+            <mat-card-title>{{i.name}}: {{w.description}}</mat-card-title>
+          </mat-card-header>
+        </div>
+
+        <mat-card-content>
+          <mat-grid-list cols="2" rowHeight="10:1">
+            <mat-grid-tile>Humidity </mat-grid-tile>
+            <mat-grid-tile>{{i.main.humidity}} %</mat-grid-tile>
+            <mat-grid-tile>Clouds</mat-grid-tile>
+            <mat-grid-tile>{{i.clouds.all}} %</mat-grid-tile>
+          </mat-grid-list>
+        </mat-card-content>
+
+        <mat-card-actions>
+          <a href="https://www.google.com/maps/search/?api=1&query={{i.coord.lat}},{{i.coord.lon}}" target="_blank" mat-button>View location on map</a>
+        </mat-card-actions>
+
+      </mat-card>
+
+    </div>
+  </div>
+</div>
