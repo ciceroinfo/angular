@@ -5,17 +5,19 @@
 
   <button (click)="signOut()">Sign Out</button>
 
-  <app-city-search></app-city-search>
+  <app-city-search (update) = "addCity($event)"></app-city-search>
 
-  <div *ngIf="xxx">
-    <div *ngFor="let i of xxx">
+  <div *ngIf="weather$">
+    <div *ngFor="let i of weather$">
 
       <mat-card class="example-card">
 
         <div *ngFor="let w of i.weather">
           <mat-card-header>
-            <img mat-card-avatar class="example-header-image" src="http://openweathermap.org/img/w/{{w.icon}}.png" alt="{{w.description}}">
-            <mat-card-title>{{i.name}}: {{w.description}}</mat-card-title>
+            <img mat-card-avatar class="example-header-image" src="http://openweathermap.org/img/w/{{w.icon}}.png">
+            <mat-card-title>{{i.name}}: {{i.main.temp}} {{unit === 'metric' ? 'C' : 'F'}}</mat-card-title>
+            <mat-card-subtitle>{{w.description}}</mat-card-subtitle>
+            <mat-card-subtitle>{{w.description}}</mat-card-subtitle>
           </mat-card-header>
         </div>
 

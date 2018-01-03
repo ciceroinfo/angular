@@ -19,8 +19,8 @@ export class ApiOpenWeatherMapService {
   ) {}
 
   /** GET current weather from the server */
-  getWeatherByCityName (cityName: string): Observable<Weather[]> {
-    return this.http.get<Weather[]>(this.apiUrl + '&q=' + cityName)
+  getWeatherByCityName (cityName: string, unit: string = 'metric'): Observable<Weather[]> {
+    return this.http.get<Weather[]>(this.apiUrl + '&units=' + unit + '&q=' + cityName)
       .pipe(
         tap(null),
         catchError(this.handleError('getWeather', []))
@@ -28,8 +28,8 @@ export class ApiOpenWeatherMapService {
   }
 
   /** GET heroes from the server */
-  getWeatherByGeo(lat: number, lon: number): Observable<Weather[]> {
-    return this.http.get<Weather[]>((this.apiUrl + '&lat=' + lat + '&lon=' + lon).toString())
+  getWeatherByGeo(lat: number, lon: number, unit: string = 'metric'): Observable<Weather[]> {
+    return this.http.get<Weather[]>((this.apiUrl + '&units=' + unit + '&lat=' + lat + '&lon=' + lon).toString())
       .pipe(
         tap(null),
         catchError(this.handleError('getWeatherByGeo', []))

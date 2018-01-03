@@ -5,13 +5,10 @@ import { Router } from "@angular/router";
 import * as firebase from 'firebase';
 import { Observable } from 'rxjs/Observable';
 
-import { Item } from '../../item';
-
 @Injectable()
 export class AuthService  {
 
   authState: any = null;
-  items: Observable<Item[]>;
 
   constructor(public afAuth: AngularFireAuth,
               private db: AngularFireDatabase,
@@ -140,17 +137,17 @@ export class AuthService  {
                   id: this.currentUserId,
                   email: this.authState.email,
                   name: this.authState.displayName,
-                  items:[
-                    {
-                      id: '1',
-                      name: 'London',
-                      country: 'GB',
-                      coord: {
-                        lon: -0.13,
-                        lat: 51.51
-                      }
-                    }
-                  ]
+                  // cities:[
+                  //   {
+                  //     id: '1',
+                  //     name: 'London',
+                  //     country: 'GB',
+                  //     coord: {
+                  //       lon: -0.13,
+                  //       lat: 51.51
+                  //     }
+                  //   }
+                  // ]
                 }
 
     this.db.object(path).update(user)

@@ -1,24 +1,15 @@
 <div class="row columns">
-
   <form class="example-form">
     <mat-form-field class="example-full-width">
-      <input #searchBox matInput placeholder="City" aria-label="City" (keyup)="search(searchBox.value)" [matAutocomplete]="auto" [formControl]="cityCtrl">
-      <mat-autocomplete #auto="matAutocomplete">
-        <mat-option *ngFor="let city of cities$ | async" [value]="city.name">
+      <input type="text" placeholder="City" aria-label="City" matInput [formControl]="cityFormControl" [matAutocomplete]="auto">
+      <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+        <mat-option *ngFor="let city of filteredCities | async" [value]="city">
           <img style="vertical-align:middle;" aria-hidden src="https://openweathermap.org/images/flags/{{city.country | lowercase}}.png" height="25" />
           <span>{{ city.name }}</span> |
           <small>Lat: {{city.coord.lat}} - Lon: {{city.coord.lon}}</small>
         </mat-option>
       </mat-autocomplete>
     </mat-form-field>
-
-    <br />
-
-    <mat-slide-toggle
-      [checked]="cityCtrl.disabled"
-      (change)="cityCtrl.disabled ? cityCtrl.enable() : cityCtrl.disable()">
-      Disable Input?
-    </mat-slide-toggle>
+    <button mat-button (click) = 'addItem()'>Add</button>
   </form>
-
 </div>

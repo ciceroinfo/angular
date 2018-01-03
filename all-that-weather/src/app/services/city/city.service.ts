@@ -15,7 +15,7 @@ export class CityService {
   constructor(public db: AngularFireDatabase) {}
 
   searchCities(term: string): Observable<City[]> {
-    return  this.db.list<City>('cities', ref => ref.orderByChild('name').startAt(term).endAt(term  + "\uf8ff" ).limitToLast(10)).valueChanges();
+    return  this.db.list<City>('cities', ref => ref.orderByChild('name').startAt(term).endAt(term  + "\uf8ff" ).limitToLast(5)).valueChanges();
   }
 
 }
